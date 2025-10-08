@@ -15,20 +15,17 @@ def main():
 
     author_name = args.author.replace(" ", "%20")
 
-    author_name = r"octavia%20butler"
+    author1 = r"george%20orwell"
+    author2 = r"donald%20trump"
 
-    query_url = "https://openlibrary.org/search/authors.json?q=" + author_name
-    r = requests.get(query_url)
+    url1 = "https://openlibrary.org/search/authors.json?q=" + author1
+    r1 = requests.get(query_url)
+
+    url2 = "https://openlibrary.org/search/authors.json?q=" + author2
+    r2 = requests.get(query_url)
 
     author_data = r.json()
     author_key = author_data["docs"][0]["key"]
-
-    # query for the books
-
-    books_url = "https://openlibrary.org/authors/" + author_key +"/works.json"
-    r = requests.get(books_url)
-
-    books_data = r.json()
 
     # write out raw data
     fname = f"author_{author_key}_works.json"
